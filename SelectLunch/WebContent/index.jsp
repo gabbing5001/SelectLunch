@@ -8,6 +8,10 @@
 	function mapTest() {
 		document.MapForm.submit();
 	}
+	
+	function textTest() {
+		document.textForm.submit();
+	}
 </script>
 
 </head>
@@ -15,7 +19,11 @@
 	<form name="MapForm" method="post" action="/SelectLunch/main">
 		<input type="hidden" name="test" value="mapmap">
 	</form>
+	<form name="textForm" method="post" action="/SelectLunch/text">
+		<input type="hidden" name="test" value="txttxt">
+	</form>
 	"hi"
 	<button onclick="mapTest();">gotomap</button>
+	<button onclick="textTest();">gototext</button>
 </body>
 </html>
