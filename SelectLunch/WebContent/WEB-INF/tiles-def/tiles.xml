@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+       
+<tiles-definitions>
+
+  <definition name="base" template="/WEB-INF/templates/layout.jsp">
+    <put-attribute name="title" value="eStore homepage" />
+    <put-attribute name="menu" value="/WEB-INF/templates/menu.jsp" />
+    <put-attribute name="footer" value="/WEB-INF/templates/footer.jsp" />
+  </definition>
+  
+  
+  <definition name="main" extends="base">
+    <put-attribute name="title" value="Map" />
+    <put-attribute name="body" value="/WEB-INF/views/map/map.jsp" />
+    <!-- templates>views여야 하는 거 아닐까.. -->
+  </definition>
+  
+  
+  <definition name="text" extends="base">
+     <put-attribute name="title" value="Text page" />
+    <put-attribute name="body" value="/WEB-INF/views/text/text.jsp" />
+  </definition>
+
+  
+</tiles-definitions>

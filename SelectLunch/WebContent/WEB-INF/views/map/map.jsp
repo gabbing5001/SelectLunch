@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; pageEncoding=utf-8"%>
 <%
 	String map = (String) request.getAttribute("map");
+	System.out.println("dhk");
 %>
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,7 @@
 <meta charset="utf-8">
 <link href="css/map.css" rel="stylesheet" type="text/css">
 <title>Insert title here</title>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=키값 넣기 &libraries=services,clusterer,drawing"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e5c58acfef16e1c7aa7143d4084fe0f1&libraries=services,clusterer,drawing"></script>
 <script>
 //키워드 검색을 요청하는 함수입니다
 var nowPage=0;
@@ -66,7 +67,7 @@ function displayPlaces(places) {
     var newmarking = 0;
 
 	if(nowPage!=0){newmarking = (nowPage * 15) - 15}
-    //newmarking = (pagination.current * 15) - 15
+    //newmarking = (pagination.current * 15) - 15 //이미지가 15번까지 밖에 없음 
     for ( var i=0; i<places.length; i++ ) {
     	newmarking++;
         // 마커를 생성하고 지도에 표시합니다
@@ -215,9 +216,40 @@ function displayInfowindow(marker, title) {
 //클릭시 랜덤 리스트에 추가 되는 함수 
 function displayRandomList(marker, title) {
 	var list = document.getElementById("Randomlist");
-    list.innerHTML += '<li>' + title + '</li>';
+	var titleV = title.replace(/(\s*)/g,""); //공백제거
+	
+	//innerHtml에서 input onclick 함수 호출시 파라미터를 넘기기 위해 
+	var text="'" + titleV + "'"
+	var delTitle = '"deleteList(' + text + ')";';
+	
+	var checkShop = true;
+	if(list.firstChild != null){ //처음일경우 체크
+		var randomList = list.getElementsByTagName('li');
+		for(var i=0; i<randomList.length; i++){ //이미 선택한 마커인지 확인
+	    	if(title == randomList[i].innerText.trim()){
+	    		alert("이미 선택한 장소 입니다.")
+				checkShop = false;
+	    	}
+		}
+		
+		if(checkShop)//리스트에 없는 경우에만 추가 가능 
+			list.innerHTML += '<li value='+titleV+'>' + title +" "+ '<input type="button" onclick='+delTitle+' value="delete"></button></li>';
+	}else{
+		list.innerHTML += '<li value='+titleV+'>' + title +" "+ '<input type="button" onclick='+delTitle+' value="delete"></button></li>';
+	}
 }
 
+//랜덤 리스트 제거 함수 
+function deleteList(title){
+	var list = document.getElementById("Randomlist");
+	var randomList = list.getElementsByTagName('li');
+	for(var i=0; i<randomList.length; i++){
+		var findTxt = randomList[i].innerText.replace(/(\s*)/g,"");//공백제거
+    	if(title == findTxt){//버튼누른 녀석과 비교 
+    		randomList[i].remove(); //리스트에서 삭제 
+    	}
+	}
+}
 
  // 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {   
