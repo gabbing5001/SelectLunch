@@ -40,13 +40,13 @@ public class TestDao{
 	
 	@SuppressWarnings("rawtypes")
 	public List selectList(String queryId){
-		System.out.println(queryId);
+		System.out.println(">>>>>>>>>" + queryId);
 		return sqlSession.selectList(queryId);
 	}
 	
 	@SuppressWarnings("rawtypes")
 	public List selectList(String queryId, Object params){
-		System.out.println(queryId);
+		System.out.println("@@@@@@@" + queryId);
 		return sqlSession.selectList(queryId,params);
 	}
 	

@@ -13,8 +13,7 @@ import com.service.TestService;
 import com.serviceImpl.TestServiceImpl;
 
 @Controller
-public class Text{
-	
+public class Text{	
 	@Autowired
 	private TestServiceImpl testService;
 	
@@ -23,8 +22,9 @@ public class Text{
 	public String mapPage(Model model) {
 		List<Test> test;
 		try {
+			System.out.println("testService b");
 			test = testService.getProducts();
-
+			System.out.println("testService 5");
 			model.addAttribute("test", test);
 			
 			for(int i=0; i<test.size(); i++) {

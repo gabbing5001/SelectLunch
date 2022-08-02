@@ -3,7 +3,7 @@
 <mapper namespace="com.my.spring.mapper.TestMapper">  
 <!--  <mapper namespace="test"> -->
 
-<select id="selectList" resultType="hashmap">
+<select id="testList" resultType="hashmap">
 	<![CDATA[
 			SELECT * 
 			  FROM EMP
