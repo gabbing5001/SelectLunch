@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; pageEncoding=utf-8"%>
 <%
 	String text = (String) request.getAttribute("text");
@@ -8,7 +9,7 @@
 <meta charset="utf">
 <script type="text/javascript">
 var i = null;
-function addList(){ //리스트 추가 함수 
+function addList(){ 
 	var list = document.getElementById('Randomlist');
 	var title = document.getElementById('addText').value;
 	i++;
@@ -24,8 +25,33 @@ function addList(){ //리스트 추가 함수
 <title>Insert title here</title>
 </head>
 <body>
-	will be text here
-	<%=text%>
+	<div>
+		<div >
+			<h2>EMP List</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Number</th>
+						<th>Name</th>
+						<th>Job</th>
+						<th>Sal</th>
+						<th>HireDate</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach var="test" items="${test}">
+						<tr>
+							<td>${test.EMPNO}</td>
+							<td>${test.ENAME}</td>
+							<td>${test.JOB}</td>
+							<td>${test.SAL}</td>
+							<td>${test.HIREDATE}</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
 <br>
 <input type="text" name="addText" id="addText"/>
 <input type="button" value="add" onclick="addList();"/>

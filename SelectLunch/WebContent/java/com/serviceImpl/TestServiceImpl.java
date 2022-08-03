@@ -17,8 +17,14 @@ public class TestServiceImpl implements TestService{
 	
 	@Override
 	public List<Test> getProducts(){
-		System.out.println("TestServiceImpl b");
-		return testDao.selectList("testList");
+		try {
+			System.out.println("TestServiceImpl b");
+			return testDao.selectList("testList");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
 	}
 
 }

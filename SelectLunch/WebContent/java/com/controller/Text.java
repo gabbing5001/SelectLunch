@@ -33,6 +33,7 @@ public class Text{
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		}
 		
 		return "text"; //tiles.xml¿¡ ¿¬°á
